@@ -150,7 +150,11 @@ def send_one_ping(my_socket, dest_addr, ID):
     """
     Send one ping to the given >dest_addr<.
     """
-    dest_addr  =  socket.gethostbyname(dest_addr)
+    try:
+        dest_addr  =  socket.gethostbyname(dest_addr)
+    except:
+        print(dest_addr + " is not reachable")
+
  
     # Header is type (8), code (8), checksum (16), id (16), sequence (16)
     my_checksum = 0
@@ -170,7 +174,10 @@ def send_one_ping(my_socket, dest_addr, ID):
         "bbHHh", ICMP_ECHO_REQUEST, 0, socket.htons(my_checksum), ID, 1
     )
     packet = header + data
-    my_socket.sendto(packet, (dest_addr, 1)) # Don't know about the 1
+    try:
+        my_socket.sendto(packet, (dest_addr, 1)) # Don't know about the 1
+    except:
+        print(dest_addr + " is not reachable")
  
  
 def do_one(dest_addr, timeout):
