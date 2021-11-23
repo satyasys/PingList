@@ -152,9 +152,9 @@ def send_one_ping(my_socket, dest_addr, ID):
     """
     try:
         dest_addr  =  socket.gethostbyname(dest_addr)
-    except:
-        print(dest_addr + " is not reachable")
-
+    except socket.gaierror, e:
+        print "failed. (socket error: '%s')" % e[1]
+        return
  
     # Header is type (8), code (8), checksum (16), id (16), sequence (16)
     my_checksum = 0
@@ -174,10 +174,7 @@ def send_one_ping(my_socket, dest_addr, ID):
         "bbHHh", ICMP_ECHO_REQUEST, 0, socket.htons(my_checksum), ID, 1
     )
     packet = header + data
-    try:
-        my_socket.sendto(packet, (dest_addr, 1)) # Don't know about the 1
-    except:
-        print(dest_addr + " is not reachable")
+    my_socket.sendto(packet, (dest_addr, 1)) # Don't know about the 1
  
  
 def do_one(dest_addr, timeout):
