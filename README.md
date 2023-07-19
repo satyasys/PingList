@@ -32,13 +32,8 @@ This script was created on MAC OS 10.10.2.  No other operating systems were test
 	Password: *******
 
 	IP addresses are  ['10.10.1.250', '10.10.1.251', '10.10.1.253']
-	=========================
-	START PING TEST
-	=========================
-	* 10.10.1.250 IS ALIVE!!!
-	* 10.10.1.251 IS ALIVE!!!
-	10.10.1.253 is dead.
-	=========================
-	END PING TEST
-	=========================
+
+	10.10.1.250
+	10.10.1.251
+
 	MacBook-Pro:PingScript$ 
