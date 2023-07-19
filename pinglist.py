@@ -20,10 +20,8 @@ if len(args) == 2:
 
 		for each in switch_ips:
 			testip = pureping.do_one(each,1)
-			if testip == None:
-				print each, "is dead."
-			else:
-				print '*', each, "IS ALIVE!!!"
+			if testip != None:
+				print each
 						
 		print "=" * 25
 		print "END PING TEST"

@@ -152,10 +152,8 @@ def send_one_ping(my_socket, dest_addr, ID):
     """
     try:
         dest_addr  =  socket.gethostbyname(dest_addr)
-    except socket.gaierror, e:
-        print "failed. (socket error: '%s')" % e[1]
+    except:
         return
- 
     # Header is type (8), code (8), checksum (16), id (16), sequence (16)
     my_checksum = 0
  
