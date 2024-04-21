@@ -13,19 +13,19 @@ if len(args) == 2:
 
 	if os.path.exists(args[1]):
 		switch_ips = open(args[1]).read().splitlines()
-		print '\nIP addresses are ', switch_ips
-		print "=" * 25
-		print "START PING TEST"
-		print "=" * 25
+		#print '\nIP addresses are ', switch_ips
+		#print "=" * 25
+		#print "START PING TEST"
+		#print "=" * 25
 
 		for each in switch_ips:
 			testip = pureping.do_one(each,1)
 			if testip != None:
 				print each
 						
-		print "=" * 25
-		print "END PING TEST"
-		print "=" * 25
+		#print "=" * 25
+		#print "END PING TEST"
+		#print "=" * 25
 
 	else:
 		print 'File, ', os.path.realpath(args[1]), 'does not exist.  Please try again.'
