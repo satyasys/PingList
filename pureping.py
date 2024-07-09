@@ -172,8 +172,10 @@ def send_one_ping(my_socket, dest_addr, ID):
         "bbHHh", ICMP_ECHO_REQUEST, 0, socket.htons(my_checksum), ID, 1
     )
     packet = header + data
-    my_socket.sendto(packet, (dest_addr, 1)) # Don't know about the 1
- 
+    try:
+        my_socket.sendto(packet, (dest_addr, 1)) # Don't know about the 1
+    except socket.error, (errno, msg):
+        print(msg)
  
 def do_one(dest_addr, timeout):
     """
@@ -189,8 +191,8 @@ def do_one(dest_addr, timeout):
                 " - Note that ICMP messages can only be sent from processes"
                 " running as root."
             )
-            raise socket.error(msg)
-        raise # raise the original error
+            #raise socket.error(msg)
+        #raise # raise the original error
  
     my_ID = os.getpid() & 0xFFFF
  
